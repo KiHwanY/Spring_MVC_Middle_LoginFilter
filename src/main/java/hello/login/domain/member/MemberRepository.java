@@ -23,6 +23,18 @@ public class MemberRepository {
         return store.get(id);
     }
 
+
+    //findByLoginId method
+//    public Member findByLoginId(String loginId){
+//        List<Member> all = findAll();
+//        for (Member m : all) {
+//            if (m.getLoginId().equals(loginId)){
+//                return m;
+//            }
+//        }
+//        return null;
+//    }
+
     public Optional<Member> findByLoginId(String loginId) {
         return findAll().stream()
                 .filter(m -> m.getLoginId().equals(loginId))
