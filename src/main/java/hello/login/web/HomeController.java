@@ -91,6 +91,18 @@ public class HomeController {
 //    @GetMapping("/")
     public String homeLoginV3Spring(
             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, Model model) {
+        /*
+        *     [@SessionAttribute]
+        *
+        *   Spring은 Session을 더 편리하게 사용할 수 있도록 @SessionAttribute을 지원한다.
+        *
+        *   이미 Login 된 사용자를 찾을 때는 다음과 같이 사용하면 된다.
+        *   참고로 이 기능은 session 을 생성하지 않는다.
+        *
+        *   @SessionAttribute(name = "loginMember", required = false) Member loginMember
+        *
+        * */
+
 
         //세션에 회원 데이터가 없으면 home
         if (loginMember == null) {
