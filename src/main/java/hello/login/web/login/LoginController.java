@@ -126,8 +126,31 @@ public class LoginController {
         HttpSession session = request.getSession();
         //세션에 로그인 회원 정보 보관
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
-
+        /*
+        *  session에 data를 보관하는 방법은 request.setAttribute(...)와 비슷하다.
+        *  하나의 session에 여러 값을 저장할 수 있다.
+        * */
         return "redirect:/";
+
+        /*
+        *  [Session create and Search]
+        *
+        *   session을 create 하려면 request.getSession(true)를 사용하면 된다.
+        *   public HttpSession getSession(boolean create);
+        *
+        *   session의 create option에 대해 알아보자.
+        *
+        *   - request.getSession(true)
+        *       - session 이 있으면 기존 session을 반환한다.
+        *       - session 이 없으면 새로운 session을 생성해서 반환한다.
+        *   - request.getSession(false)
+        *       - session 이 있으면 기존 session을 반환한다.
+        *       - session 이 없으면 새로운 session을 생성하지 않는다. null을 반환한다.
+        *
+        *   request.getSession() : 신규 session을 생성하는 request.getSession(true)와 동일하다.
+        *
+        *
+        * */
 
     }
 

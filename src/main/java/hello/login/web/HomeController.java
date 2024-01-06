@@ -78,6 +78,14 @@ public class HomeController {
         //세션이 유지되면 로그인으로 이동
         model.addAttribute("member", loginMember);
         return "loginHome";
+
+        /*
+        *  request.getSession(false) : request.getSession()를 사용하면 기본값이 create : false 이므로,
+        *   Login 하지 않을 사용자도 의미없는 session이 만들어진다. 따라서 session을 찾아서 사용하는 시점에는 create : false option을 사용해서
+        *   session 을 create 하지 않아야 한다.
+        *
+        *  session.getAttribute(SessionConst.LOGIN_MEMBER) : Login 시점에 session에 보관한 회원 객체를 찾는다.
+        * */
     }
 
 //    @GetMapping("/")
