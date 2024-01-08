@@ -37,6 +37,14 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(new LoginMemberArgumentResolver());
+
+        // 앞서 개발한 LoginMemberArgumentResolver 를 등록한다.
+
+        /*
+        *   [실행]
+        *   실행해보면, 결과는 동일하지만, 더 편리하게 로그인 회원 정보를 조회할 수 있다.
+        *   이렇게 ArgumentResolver 를 활용하면 공통 작업이 필요할 때 Controller 를 더욱 편리하게 사용할 수 있다.
+        * */
     }
 
     @Override

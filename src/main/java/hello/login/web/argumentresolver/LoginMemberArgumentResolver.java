@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 public class LoginMemberArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Override
-    public boolean supportsParameter(MethodParameter parameter) {
+    public boolean supportsParameter(MethodParameter parameter) { // @Login 애노테이션이 있으면 Member type 이면 해당 ArgumentResolver가 사용된다.
         log.info("supportsParameter 실행");
 
         boolean hasLoginAnnotation = parameter.hasParameterAnnotation(Login.class);
@@ -27,7 +27,9 @@ public class LoginMemberArgumentResolver implements HandlerMethodArgumentResolve
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-
+        // Controller 호출 직전에 호출 되어서 필요한 파라미터 정보를 생성해준다.
+        // 여기서는 session에 있는 로그인 회원 정보인 member 객체를 찾아서 반환해준다.
+        // 이후 springMVC는 Controller 의 method 를 호출하면서 여기에서 반환된 member 객체를 파라미터에 전달해준다.
         log.info("resolveArgument 실행");
 
         HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
