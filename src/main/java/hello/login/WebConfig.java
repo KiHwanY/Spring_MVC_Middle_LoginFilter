@@ -41,10 +41,10 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LogInterceptor())
-                .order(1)
-                .addPathPatterns("/**")
-                .excludePathPatterns("/css/**", "/*.ico", "/error");
+        registry.addInterceptor(new LogInterceptor()) // interceptor 를 등록한다.
+                .order(1) // interceptor 호출 sequence 를 지정한다. under 일수록 먼저 호출된다.
+                .addPathPatterns("/**") // interceptor 를 적용할 URL Pattern 을 지정한다.
+                .excludePathPatterns("/css/**", "/*.ico", "/error"); // interceptor 에서 제외할 Pattern 을 지정한다.
 
         registry.addInterceptor(new LoginCheckInterceptor())
                 .order(2)
@@ -52,7 +52,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/", "/members/add", "/login", "/logout",
                         "/css/**", "/*.ico", "/error");
     }
-
+    // Filter 와 비교해보면 interceptor 는 addPathPatterns, excludePathPatterns 로 매우 정밀하게 URL Pattern을 지정할 수 있다.
     @Bean
     public FilterRegistrationBean logFilter() {
         FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
